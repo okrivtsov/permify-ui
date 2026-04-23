@@ -16,6 +16,8 @@ When making UI changes, prefer reading and editing files under `frontend/src/`.
 - If you show a commit message, a command, or a code change — execute it exactly as shown.
 - Never silently add, remove, or alter anything after showing it to the user.
 - If you want to change something, show the updated version and wait for approval again.
+- Never commit, push, or run destructive commands without explicit user confirmation.
+- "Add this text" means add to the file. Not commit. Not push. Just the file.
 - Violating this rule destroys trust. There is no justification for it.
 
 ## 1. Think Before Coding
