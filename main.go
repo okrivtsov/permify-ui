@@ -413,20 +413,22 @@ func (s *Server) handleAuthCallback(w http.ResponseWriter, r *http.Request) {
 
 	token, err := s.oauth2Config.Exchange(r.Context(), r.URL.Query().Get("code"))
 	if err != nil {
-		http.Error(w, "token exchange failed: "+err.Error(), http.StatusInternalServerError)
+		log.Printf("oauth2 token exchange failed: %v", err)
+		http.Error(w, "authentication failed", http.StatusInternalServerError)
 		return
 	}
 
 	rawIDToken, ok := token.Extra("id_token").(string)
 	if !ok {
-		http.Error(w, "no id_token", http.StatusInternalServerError)
+		http.Error(w, "authentication failed", http.StatusInternalServerError)
 		return
 	}
 
 	verifier := s.oidcProvider.Verifier(&oidc.Config{ClientID: s.cfg.Auth.OIDC.ClientID})
 	idToken, err := verifier.Verify(r.Context(), rawIDToken)
 	if err != nil {
-		http.Error(w, "token verification failed: "+err.Error(), http.StatusInternalServerError)
+		log.Printf("id_token verification failed: %v", err)
+		http.Error(w, "authentication failed", http.StatusInternalServerError)
 		return
 	}
 
@@ -436,7 +438,8 @@ func (s *Server) handleAuthCallback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := idToken.Claims(&claims); err != nil {
-		http.Error(w, "claims error: "+err.Error(), http.StatusInternalServerError)
+		log.Printf("id_token claims error: %v", err)
+		http.Error(w, "authentication failed", http.StatusInternalServerError)
 		return
 	}
 
