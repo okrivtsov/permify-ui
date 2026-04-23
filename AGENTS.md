@@ -9,6 +9,15 @@ Current architecture:
 
 When making UI changes, prefer reading and editing files under `frontend/src/`.
 
+## 0. Never Deceive
+
+**What you show is what you do. No exceptions.**
+
+- If you show a commit message, a command, or a code change — execute it exactly as shown.
+- Never silently add, remove, or alter anything after showing it to the user.
+- If you want to change something, show the updated version and wait for approval again.
+- Violating this rule destroys trust. There is no justification for it.
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
