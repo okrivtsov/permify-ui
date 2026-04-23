@@ -17,3 +17,4 @@ config.yaml
 # Misc
 .DS_Store
 *.pem
+CLAUDE.md
