@@ -606,41 +606,6 @@ function fmtDate(value: string): string {
   return `${Number(day)} ${monthLabel} ${year}, ${hour}:${minute}`
 }
 
-function formatPermifyHost(permifyUrl: string) {
-  const trimmedUrl = permifyUrl.trim()
-  const normalizedUrl = /^https?:\/\//i.test(trimmedUrl) ? trimmedUrl : `http://${trimmedUrl}`
-
-  try {
-    const host = new URL(normalizedUrl).host
-
-    if (host) {
-      return host
-    }
-  } catch {
-    // Fall back to a best-effort host-like label for malformed config values.
-  }
-
-  return trimmedUrl.replace(/^https?:\/\//i, '').replace(/\/.*$/, '')
-}
-
-function SidebarContextHint({ permifyUrl }: { permifyUrl: string }) {
-  const host = formatPermifyHost(permifyUrl)
-  const { colorScheme } = useMantineColorScheme()
-
-  return (
-    <Text
-      size="xs"
-      c={colorScheme === 'dark' ? 'dark.2' : 'gray.5'}
-      truncate="end"
-      display="block"
-      w="100%"
-      title={host}
-    >
-      {host}
-    </Text>
-  )
-}
-
 function SchemaScreen({ api }: { api: ApiClient }) {
   const [schemas, setSchemas] = useState<SchemaVersion[]>([])
   const [selected, setSelected] = useState('')
@@ -1622,15 +1587,12 @@ export function App() {
 
       <AppShell.Navbar>
         <AppShell.Section px="lg" pt="xl" pb="md" mb="md">
-          <Stack gap={4}>
-            <Group justify="space-between" wrap="nowrap">
-              <UnstyledButton onClick={navigateHome}>
-                <Title order={4} fw={600}>Permify UI</Title>
-              </UnstyledButton>
-              <ThemeToggle />
-            </Group>
-            <SidebarContextHint permifyUrl={permifyUrl} />
-          </Stack>
+          <Group justify="space-between" wrap="nowrap">
+            <UnstyledButton onClick={navigateHome}>
+              <Title order={4} fw={600}>Permify UI</Title>
+            </UnstyledButton>
+            <ThemeToggle />
+          </Group>
         </AppShell.Section>
 
         <AppShell.Section grow component="nav">
