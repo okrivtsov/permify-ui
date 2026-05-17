@@ -4,7 +4,7 @@
   </picture>
 </p>
 
-**permify-ui** is a lightweight web UI for [Permify](https://github.com/permify/permify). Browse schema versions, walk relationships, and test access rules from the browser — without exposing the Permify token to the client.
+**permify-ui** is a lightweight web UI for [Permify](https://github.com/permify/permify). Browse schema versions, explore relationships, and test access rules from the browser — without exposing the Permify token to the client.
 
 > **Beta.** Compatibility across Permify versions has not been thoroughly tested. This is an independent, community-built project and is not affiliated with or endorsed by Permify or FusionAuth.
 
