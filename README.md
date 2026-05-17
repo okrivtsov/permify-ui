@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="docs/hero.png" alt="permify-ui — a web UI for Permify" />
+  <picture>
+    <img src="docs/hero.png" alt="permify-ui — a web UI for Permify" />
+  </picture>
 </p>
 
 **permify-ui** is a lightweight web UI for [Permify](https://github.com/permify/permify). Browse schema versions, walk relationships, and test access rules from the browser — without exposing the Permify token to the client.
